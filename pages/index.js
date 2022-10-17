@@ -4,8 +4,8 @@ import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {categoriesStructure} from "../categoryRouting/categoriesStructure";
-import {translatedRoutes} from "../categoryRouting/translatedRoutes";
+import { categoriesStructure } from "../categoryRouting/categoriesStructure";
+import { translatedRoutes } from "../categoryRouting/translatedRoutes";
 
 export default function Home({ allPostsData }) {
   const { locale, locales, asPath } = useRouter();
@@ -14,6 +14,10 @@ export default function Home({ allPostsData }) {
   return (
     <Layout home>
       <Head>
+        <meta
+          name="google-site-verification"
+          content="VWj6la0Gw5ThLJRHFxnXwPmJZm-a39vJIX4h6bS0_Bc"
+        />
         <title>{siteTitle}</title>
       </Head>
 
@@ -27,15 +31,17 @@ export default function Home({ allPostsData }) {
         {Object.keys(categoriesStructure).map((key) => {
           console.log(categoriesStructure, translatedRoutes);
           const linkName = translatedRoutes[locale][key];
-          return <Link
-            href={{
-              pathname: linkName,
-              query: { categoryKey: key }, // the data
-            }}
-            key={key}
-          >
-            {linkName}
-          </Link>;
+          return (
+            <Link
+              href={{
+                pathname: linkName,
+                query: { categoryKey: key }, // the data
+              }}
+              key={key}
+            >
+              {linkName}
+            </Link>
+          );
         })}
       </header>
     </Layout>
